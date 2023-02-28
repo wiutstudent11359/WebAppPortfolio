@@ -13,14 +13,20 @@ namespace WAD_Portfolio_11359
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            Product product = new Product
+            {
+                Name = "Apple Pie",
+                Price = 123456
+            };
+            product.ProductAdding(product);
+            Console.ReadLine();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            /*public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                });*/
     }
 }
