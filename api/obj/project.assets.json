@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\WAD_Portfolio_11359\\WAD_Portfolio_11359.csproj",
+      "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\api\\WAD_Portfolio_11359.csproj",
       "projectName": "WAD_Portfolio_11359",
-      "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WAD_Portfolio_11359\\WAD_Portfolio_11359.csproj",
+      "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\api\\WAD_Portfolio_11359.csproj",
       "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WAD_Portfolio_11359\\obj\\",
+      "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\api\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
