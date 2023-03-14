@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WAD_Portfolio_11359
+namespace WAD_Portfolio_11359.Models
 {
     public class Payment
     {

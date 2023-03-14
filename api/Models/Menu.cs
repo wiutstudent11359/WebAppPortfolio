@@ -1,9 +1,9 @@
-﻿namespace WAD_Portfolio_11359
+﻿namespace WAD_Portfolio_11359.Models
 {
     public class Menu
-    { 
+    {
         //department=menu
-        public int Id { get; set; } 
+        public int Id { get; set; }
         public string Name { get; set; }
 
         public void GenerateData()
