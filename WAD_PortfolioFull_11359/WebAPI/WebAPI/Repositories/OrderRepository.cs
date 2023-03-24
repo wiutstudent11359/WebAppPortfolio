@@ -2,6 +2,7 @@
 using System.Linq;
 using WebAPI.Models;
 using WebAPI.DAL;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPI.Repositories
 {
@@ -22,19 +23,18 @@ namespace WebAPI.Repositories
         public Order GetOrderById(int orderId)
         {
             var order = _dbContext.Orders.Find(orderId);
-            //_dbContext.Entry(prod).Reference(s => s.CustomerOrder).Load();
+            _dbContext.Entry(order).Reference(s => s.Customer).Load();
             return order;
         }
         public IEnumerable<Order> GetOrders()
         {
 
-            return _dbContext.Orders.ToList();
-                //.Include(s => s.OrderCategory).ToList();
+            return _dbContext.Orders.Include(s => s.Customer).ToList();
         }
         public void InsertOrder(Order order)
         {
 
-            order.Customer = _dbContext.Customers.Find(order.Customer.ID);
+            order.Customer = _dbContext.Customers.Find(order.Customer);
             _dbContext.Add(order);
             Save();
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WebAPI\\WebAPI\\WebAPI.csproj": {}
+    "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WAD_MVC_11359\\WebApplication8\\WAD_MVC_11359.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WebAPI\\WebAPI\\WebAPI.csproj": {
+    "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WAD_MVC_11359\\WebApplication8\\WAD_MVC_11359.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WebAPI\\WebAPI\\WebAPI.csproj",
-        "projectName": "WebAPI",
-        "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WebAPI\\WebAPI\\WebAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WAD_MVC_11359\\WebApplication8\\WAD_MVC_11359.csproj",
+        "projectName": "WAD_MVC_11359",
+        "projectPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WAD_MVC_11359\\WebApplication8\\WAD_MVC_11359.csproj",
         "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WebAPI\\WebAPI\\obj\\",
+        "outputPath": "C:\\Users\\Asus\\OneDrive\\Desktop\\WebAppPortfolio\\WAD_PortfolioFull_11359\\WAD_MVC_11359\\WebApplication8\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -45,6 +45,10 @@
         "netcoreapp3.0": {
           "targetAlias": "netcoreapp3.0",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"
@@ -62,6 +66,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
             }
           },
           "imports": [
