@@ -13,7 +13,6 @@ namespace WAD_MVC_11359.Models
         public decimal Price { get; set; }
 
         public Customer Customer { get; set; }
-       // public int OrderCustomerId { get; set; }
 
     }
 }

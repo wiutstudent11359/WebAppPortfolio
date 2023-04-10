@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using WAD_MVC_11359.Models;
 
@@ -93,11 +94,25 @@ namespace WAD_MVC_11359.Controllers
 
 
         // GET: Order/Create
-        public ActionResult Create()
+        public async Task<ActionResult> CreateAsync()
         {
-            return View();
-        }
+            List<Customer> customers = new List<Customer>();
+            HeaderClearing();
+            HttpResponseMessage httpResponseMessage = await clnt.GetAsync("api/Order");
 
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                string responseMessage = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                customers = JsonConvert.DeserializeObject<List<Customer>>(responseMessage);
+            }
+
+            var viewModel = new CustomerOrderViewModel
+            {
+                Order = new Order(),
+                Customer = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(customers, "ID", "Name", "CustomerAddress")
+            };
+            return View(viewModel);
+        }
 
 
         // POST: Order/Create
@@ -105,50 +120,68 @@ namespace WAD_MVC_11359.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Order order)
         {
-           // product.Customer = new Customer { ID = product.OrderCustomerId };
+            order.Customer = new Customer { ID = order.Customer.ID };
             if (ModelState.IsValid)
             {
-                // serializing product object into json format to send
-                /*string jsonObject = "{"+product."}"*/
-                ;
-                string createProductInfo = JsonConvert.SerializeObject(order);
-
-                // creating string content to pass as Http content later
-                StringContent stringContentInfo = new StringContent(createProductInfo, Encoding.UTF8, "application/json");
-
-                // Making a Post request
-                HttpResponseMessage createHttpResponseMessage = clnt.PostAsync(clnt.BaseAddress + "api/Order/", stringContentInfo).Result;
+                string createOrderInfo = JsonConvert.SerializeObject(order);
+                StringContent stringContentInfo = new StringContent(createOrderInfo, Encoding.UTF8, "application/json");
+                HttpResponseMessage createHttpResponseMessage = clnt.PostAsync(clnt.BaseAddress + "api/Order", stringContentInfo).Result;
                 if (createHttpResponseMessage.IsSuccessStatusCode)
                 {
                     return RedirectToAction(nameof(Index));
                 }
             }
-
             return View(order);
-
         }
 
         // GET: Order/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            Order order = new Order();
+            HeaderClearing();
+
+            HttpResponseMessage httpResponseMessage = await clnt.GetAsync($"api/Order/{id}");
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                string responseMessage = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                order = JsonConvert.DeserializeObject<Order>(responseMessage);
+            }
+
+            List<Customer> customers = new List<Customer>();
+            httpResponseMessage = await clnt.GetAsync("api/Customer");
+
+            if (httpResponseMessage.IsSuccessStatusCode)
+            {
+                string responseMessage = httpResponseMessage.Content.ReadAsStringAsync().Result;
+                customers = JsonConvert.DeserializeObject<List<Customer>>(responseMessage);
+            }
+            var viewModel = new CustomerOrderViewModel
+            {
+                Order = order,
+                Customer = new SelectList(customers, "Id", "CustomerName", "Description")
+            };
+            return View(viewModel);
         }
 
         // POST: Order/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Order order)
         {
-            try
-            {
-                // TODO: Add update logic here
+            order.Customer = new Customer { ID = order.Customer.ID };
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            if (ModelState.IsValid)
             {
-                return View();
+                string createOrderInfo = JsonConvert.SerializeObject(order);
+                StringContent stringContentInfo = new StringContent(createOrderInfo, Encoding.UTF8, "application/json");
+                HttpResponseMessage editHttpResponseMessage = clnt.PutAsync(clnt.BaseAddress + $"api/Order/{id}", stringContentInfo).Result;
+                if (editHttpResponseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction(nameof(Index));
+                }
             }
+            return View(order);
         }
 
         // GET: ProgressController/Delete/5
